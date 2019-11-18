@@ -1,33 +1,30 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css'
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
 
 function Square(props) {
   return (
-    <button 
-      className="square"
-      onClick={props.onClick}
-    >
+    <button className="square" onClick={props.onClick}>
       {props.value}
     </button>
   );
 }
 
 class Board extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       squares: Array(9).fill(null),
-      xIsNext: true,    
-    }
+      xIsNext: true
+    };
   }
 
   handleClick(i) {
     const squares = this.state.squares.slice();
-    if (calculateWinner(squares) ||  squares[i]){
+    if (calculateWinner(squares) || squares[i]) {
       return;
     }
-    squares[i] = this.state.xIsNext ? 'X': 'O';
+    squares[i] = this.state.xIsNext ? "X" : "P";
     this.setState({
       squares: squares,
       xIsNext: !this.state.xIsNext
@@ -37,20 +34,22 @@ class Board extends React.Component {
   renderSquare(i) {
     return (
       <Square
-       value={this.state.squares[i]}
-       onClick={() => {this.handleClick(i)} }
+        value={this.state.squares[i]}
+        onClick={() => {
+          this.handleClick(i);
+        }}
       />
     );
   }
 
   render() {
-    const winner = calculateWinner(this.state.squares)
+    const winner = calculateWinner(this.state.squares);
     let status;
-    if (winner){
-      status = 'Winner: ' + winner
-    } else {   
-      status = 'Next player: ' + (this.state.xIsNext ? 'X': 'O');
-    } 
+    if (winner) {
+      status = "Winner: " + winner;
+    } else {
+      status = "Next player: " + (this.state.xIsNext ? "X" : "O");
+    }
 
     return (
       <div>
@@ -100,7 +99,7 @@ function calculateWinner(squares) {
     [1, 4, 7],
     [2, 5, 8],
     [0, 4, 8],
-    [2, 4, 6],
+    [2, 4, 6]
   ];
   for (let i = 0; i < lines.length; i++) {
     const [a, b, c] = lines[i];
@@ -113,7 +112,4 @@ function calculateWinner(squares) {
 
 // ========================================
 
-ReactDOM.render(
-  <Game />,
-  document.getElementById('root')
-);
+ReactDOM.render(<Game />, document.getElementById("root"));
