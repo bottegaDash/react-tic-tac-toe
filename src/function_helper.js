@@ -1,13 +1,3 @@
-import React from "react";
-
-export function Square(props) {
-    return (
-      <button className="square" onClick={props.onClick}>
-        {props.value}
-      </button>
-    );
-  }
-
 export function calculateWinner(squares) {
   const lines = [
     [0, 1, 2],

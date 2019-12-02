@@ -1,4 +1,5 @@
-import { Square } from "./function_helper.js";
+import React from "react";
+import Square from "./square.js";
 // setup file
 import { configure } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
@@ -9,7 +10,7 @@ import { shallow } from "enzyme";
 describe("Test Square", () => {
   const mockCallBack = jest.fn();
   var props = { onClick: mockCallBack, value: "O" };
-  var squareButton = shallow(Square(props));
+  var squareButton = shallow(<Square {...props} />);
 
   it("Contains button element", () => {
     expect(squareButton.exists("button")).toEqual(true);
