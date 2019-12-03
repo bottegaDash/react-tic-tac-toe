@@ -10,7 +10,10 @@ import { shallow } from "enzyme";
 describe("Test Square", () => {
   const mockCallBack = jest.fn();
   var props = { onClick: mockCallBack, value: "O" };
-  var squareButton = shallow(<Square {...props} />);
+  var squareButton;
+  beforeEach(() => {
+    squareButton = shallow(<Square {...props} />);
+  });
 
   it("Contains button element", () => {
     expect(squareButton.exists("button")).toEqual(true);
